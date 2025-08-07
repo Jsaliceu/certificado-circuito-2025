@@ -58,7 +58,7 @@ body {
     margin-bottom: 8px;
 }
 
-input[type="text"] {
+input[type="text"], input[type="email"] {
     width: 100%;
     padding: 12px;
     border: 1px solid var(--border-color);
@@ -106,36 +106,57 @@ input[type="radio"] {
 
 #certificate-preview {
     width: 100%;
-    /* A proporção de um certificado A4 paisagem (29.7 / 21) */
     aspect-ratio: 29.7 / 21; 
-    background-image: url('modelo-certificado.jpg'); /* << COLOQUE SUA IMAGEM AQUI */
+    background-image: url('modelo-certificado.jpg');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    position: relative; /* Essencial para posicionar o texto */
+    position: relative;
     margin-bottom: 30px;
-    color: #000; /* Cor do texto no certificado */
+    color: #000;
 }
 
-#cert-name, #cert-role {
-    position: absolute; /* Permite posicionamento preciso */
-    width: 105%;
+/* !!! NOVO BLOCO DE CÓDIGO PARA O TEXTO DO CERTIFICADO !!! */
+
+#cert-name {
+    /* --- Posicionamento Preciso --- */
+    position: absolute;
+    top: 41%; /* Ajuste fino da posição vertical */
+    left: 50%;
+    transform: translate(-50%, -50%); /* Técnica para centralização perfeita */
+    
+    /* --- Controle do Tamanho e Espaço --- */
+    width: 80%; /* Ocupa 80% da largura do certificado para dar margens */
+    max-width: 800px; /* Um limite máximo em pixels */
+    
+    /* --- Estilo da Fonte (Absoluto) --- */
+    font-family: 'Poppins', sans-serif; /* Mantém a fonte consistente */
+    font-size:16px;  /* TAMANHO FIXO EM PIXELS */
+    font-weight: 700; /* Negrito */
+    color: #333333;   /* Cor do texto, um preto suave */
+    
+    /* --- Controle de Múltiplas Linhas --- */
+    line-height: 1.2; /* Espaçamento entre as linhas se o nome for comprido */
     text-align: center;
 }
 
-/* !!! ATENÇÃO: Estes valores precisarão de ajuste fino !!! */
-#cert-name {
-    top: 38%; /* Distância do topo */
-    font-size: 0.8vw; /* Tamanho da fonte responsivo */
-    font-weight: 700;
-}
-
 #cert-role {
-    top: 60%; /* Distância do topo */
-    font-size: 1.5vw; /* Tamanho da fonte responsivo */
-    font-weight: 400;
-}
+    /* --- Posicionamento Preciso --- */
+    position: absolute;
+    top: 65%; /* Ajuste fino da posição vertical */
+    left: 50%;
+    transform: translateX(-50%);
 
+    /* --- Estilo da Fonte (Absoluto) --- */
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px; /* TAMANHO FIXO EM PIXELS */
+    font-weight: 400; /* Normal */
+    color: #333333;
+
+    /* --- Controle do Tamanho e Espaço --- */
+    text-align: center;
+    width: 100%;
+}
 
 .hidden {
     display: none;
