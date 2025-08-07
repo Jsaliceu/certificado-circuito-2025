@@ -102,8 +102,7 @@ input[type="radio"] {
     background-color: #b82e3b;
 }
 
-/* --- ESTILOS DO CERTIFICADO --- */
-
+/* --- ESTILOS DO CERTIFICADO (PREVIEW NA PÁGINA) --- */
 #certificate-preview {
     width: 100%;
     aspect-ratio: 29.7 / 21; 
@@ -116,48 +115,73 @@ input[type="radio"] {
     color: #000;
 }
 
-/* !!! NOVO BLOCO DE CÓDIGO PARA O TEXTO DO CERTIFICADO !!! */
-
-#cert-name {
-    /* --- Posicionamento Preciso --- */
+#certificate-preview #cert-name {
     position: absolute;
-    top: 41%; /* Ajuste fino da posição vertical */
+    top: 41%;
     left: 50%;
-    transform: translate(-50%, -50%); /* Técnica para centralização perfeita */
-    
-    /* --- Controle do Tamanho e Espaço --- */
-    width: 80%; /* Ocupa 80% da largura do certificado para dar margens */
-    max-width: 800px; /* Um limite máximo em pixels */
-    
-    /* --- Estilo da Fonte (Absoluto) --- */
-    font-family: 'Poppins', sans-serif; /* Mantém a fonte consistente */
-    font-size:16px;  /* TAMANHO FIXO EM PIXELS */
-    font-weight: 700; /* Negrito */
-    color: #333333;   /* Cor do texto, um preto suave */
-    
-    /* --- Controle de Múltiplas Linhas --- */
-    line-height: 1.2; /* Espaçamento entre as linhas se o nome for comprido */
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 800px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px; /* Tamanho pequeno apenas para o preview na tela */
+    font-weight: 700;
+    color: #333333;
+    line-height: 1.2;
     text-align: center;
 }
 
-#cert-role {
-    /* --- Posicionamento Preciso --- */
+#certificate-preview #cert-role {
     position: absolute;
-    top: 65%; /* Ajuste fino da posição vertical */
+    top: 65%;
     left: 50%;
     transform: translateX(-50%);
-
-    /* --- Estilo da Fonte (Absoluto) --- */
     font-family: 'Poppins', sans-serif;
-    font-size: 15px; /* TAMANHO FIXO EM PIXELS */
-    font-weight: 400; /* Normal */
+    font-size: 15px; /* Tamanho pequeno apenas para o preview na tela */
+    font-weight: 400;
     color: #333333;
-
-    /* --- Controle do Tamanho e Espaço --- */
     text-align: center;
     width: 100%;
 }
 
 .hidden {
     display: none;
+}
+
+/* --- ESTILO PARA O MODAL DE RENDERIZAÇÃO ELEGANTE --- */
+#render-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff; /* Fundo branco opaco */
+    z-index: 10000;
+    display: flex;
+    flex-direction: column; /* Para alinhar o texto de loading */
+    justify-content: center;
+    align-items: center;
+    /* Esconde o modal para não ser visto */
+    opacity: 0;
+    pointer-events: none;
+}
+
+#render-modal p {
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+#render-modal #certificate-preview {
+    width: 1123px; /* Largura fixa e grande para alta resolução */
+    height: 794px;
+    margin: 0;
+}
+
+/* --- FONTES GRANDES APENAS PARA O CERTIFICADO DENTRO DO MODAL DE RENDERIZAÇÃO --- */
+#render-modal #cert-name {
+    font-size: 26px !important; /* Fonte grande para o PDF final */
+}
+
+#render-modal #cert-role {
+    font-size: 22px !important; /* Fonte grande para o PDF final */
 }
