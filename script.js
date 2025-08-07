@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // CAPTURA DOS ELEMENTOS DA PÁGINA (DOM)
+    // CAPTURA DOS ELEMENTOS DA PÁGINA
     const formSection = document.getElementById('form-section');
     const certificateSection = document.getElementById('certificate-section');
     const certificateForm = document.getElementById('certificate-form');
@@ -10,71 +10,88 @@ document.addEventListener('DOMContentLoaded', () => {
     const certRoleSpan = document.getElementById('cert-role');
     const downloadBtn = document.getElementById('download-btn');
 
-    // URL do seu Web App do Google Apps Script
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzedqQABer3dhB2Ae6ym0KXouIaYEGhf5wFzklSxpFH0jb-pudYTtWv6U2ra2-UPOms/exec'; // Lembre-se de manter sua URL aqui
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzedqQABer3dhB2Ae6ym0KXouIaYEGhf5wFzklSxpFH0jb-pudYTtWv6U2ra2-UPOms/exec'; // Mantenha sua URL aqui
 
-    // LÓGICA PRINCIPAL AO ENVIAR O FORMULÁRIO
+    // FUNÇÃO ROBUSTA PARA GERAR O PDF
+    async function generatePdf(name, role) {
+        // 1. Cria o modal de renderização
+        const renderModal = document.createElement('div');
+        renderModal.id = 'render-modal';
+        
+        // Adiciona a mensagem de "carregando"
+        const loadingText = document.createElement('p');
+        loadingText.textContent = 'Gerando seu certificado...';
+        renderModal.appendChild(loadingText);
+        
+        const tempCert = certificatePreview.cloneNode(true);
+        tempCert.querySelector('#cert-name').textContent = name;
+        tempCert.querySelector('#cert-role').textContent = role;
+        
+        renderModal.appendChild(tempCert);
+        document.body.appendChild(renderModal);
+
+        return new Promise((resolve, reject) => {
+            setTimeout(async () => {
+                try {
+                    // Aumentamos a escala para máxima qualidade
+                    const canvas = await html2canvas(tempCert, { useCORS: true, scale: 4 });
+                    
+                    const { jsPDF } = window.jspdf;
+                    const pdf = new jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a4' });
+                    const imgData = canvas.toDataURL('image/jpeg', 1.0);
+                    const pdfWidth = pdf.internal.pageSize.getWidth();
+                    const pdfHeight = pdf.internal.pageSize.getHeight();
+                    pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
+                    
+                    document.body.removeChild(renderModal);
+                    resolve(pdf);
+                } catch (error) {
+                    document.body.removeChild(renderModal);
+                    console.error("Erro ao gerar o canvas/PDF:", error);
+                    reject(error);
+                }
+            }, 200);
+        });
+    }
+
+    // LÓGICA AO ENVIAR O FORMULÁRIO
     certificateForm.addEventListener('submit', async (event) => {
         event.preventDefault();
-
         const name = nameInput.value.trim();
         const email = emailInput.value.trim();
         const selectedRole = document.querySelector('input[name="role"]:checked').value;
 
         certNameSpan.textContent = name;
         certRoleSpan.textContent = selectedRole;
-
         formSection.classList.add('hidden');
         certificateSection.classList.remove('hidden');
 
-        // --- LÓGICA DE GERAÇÃO E ENVIO CORRIGIDA ---
         try {
-            const { jsPDF } = window.jspdf;
-            const pdf = new jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a4' });
+            const pdf = await generatePdf(name, selectedRole);
             
-            const canvas = await html2canvas(certificatePreview, { useCORS: true, scale: 4 });
-            const imgData = canvas.toDataURL('image/jpeg', 1.0);
-            
-            const pdfWidth = pdf.internal.pageSize.getWidth();
-            const pdfHeight = pdf.internal.pageSize.getHeight();
-            
-            pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
-
-            // Gera a saída do PDF como uma string de dados base64
             const pdfOutput = pdf.output('datauristring');
-            
-            // Remove o cabeçalho 'data:application/pdf;base64,' para enviar apenas os dados
             const base64Data = pdfOutput.split(',')[1];
-
             const payload = {
                 email: email,
                 pdfData: base64Data,
                 fileName: `Certificado - ${name}.pdf`,
                 userName: name
             };
-
-            // Envia para o Google Apps Script
-            fetch(SCRIPT_URL, {
-                method: 'POST',
-                mode: 'no-cors',
-                body: JSON.stringify(payload)
-            });
-            
+            fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(payload) });
         } catch (error) {
-            console.error('Erro ao gerar ou enviar o PDF:', error);
+            alert("Ocorreu um erro ao gerar seu certificado. Por favor, tente novamente.");
         }
     });
 
-    // A LÓGICA DE DOWNLOAD MANUAL CONTINUA IGUAL
-    downloadBtn.addEventListener('click', () => {
-        const { jsPDF } = window.jspdf;
-        const pdf = new jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a4' });
-        html2canvas(certificatePreview, { useCORS: true, scale: 4 }).then(canvas => {
-            const imgData = canvas.toDataURL('image/jpeg', 1.0);
-            const pdfWidth = pdf.internal.pageSize.getWidth();
-            const pdfHeight = pdf.internal.pageSize.getHeight();
-            pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
-            pdf.save(`Certificado - ${nameInput.value.trim()}.pdf`);
-        });
+    // LÓGICA DE DOWNLOAD MANUAL
+    downloadBtn.addEventListener('click', async () => {
+        const name = nameInput.value.trim();
+        const selectedRole = document.querySelector('input[name="role"]:checked').value;
+        try {
+            const pdf = await generatePdf(name, selectedRole);
+            pdf.save(`Certificado - ${name}.pdf`);
+        } catch (error) {
+            alert("Ocorreu um erro ao gerar o PDF para download. Por favor, tente novamente.");
+        }
     });
 });
