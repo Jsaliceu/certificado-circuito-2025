@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Certificado - Circuito de Profissões</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div id="form-section" class="card">
+        <div class="card-header">
+            <h1>Formulário Para Certificado</h1>
+            <p>Somos muito gratos pela sua participação. Para receber seu certificado, por favor, preencha os dados abaixo.</p>
+        </div>
+        <form id="certificate-form">
+            <div class="form-group">
+                <label for="name-input">Nome completo (para o certificado)</label>
+                <input type="text" id="name-input" required placeholder="Digite seu nome completo">
+            </div>
+            
+            <div class="form-group">
+                <label for="email-input">E-mail (para envio do certificado)</label>
+                <input type="email" id="email-input" required placeholder="seu.email@exemplo.com">
+            </div>
+        
+            <div class="form-group">
+                <label>De qual forma participou do evento?</label>
+                <div class="radio-group">
+                    <label class="radio-label">
+                        <input type="radio" name="role" value="Palestrante" checked> Palestrante
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="role" value="Monitor(a) (Ex-aluno)"> Monitor(a) (Ex-aluno)
+                    </label>
+                </div>
+            </div>
+            <button type="submit" class="cta-button">Gerar e enviar certificado</button>
+        </form>
+    </div>
+
+    <div id="certificate-section" class="card hidden">
+        <div class="card-header">
+            <h2>Certificado gerado com sucesso!</h2>
+            <p>Verifique as informações abaixo. Se estiver tudo correto, clique para baixar seu certificado em PDF.</p>
+        </div>
+        <div id="certificate-preview">
+            <span id="cert-name">Nome do Participante</span>
+            <span id="cert-role">Palestrante do Tema</span>
+        </div>
+        <button id="download-btn" class="cta-button">Baixar certificado em PDF</button>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,142 @@
+:root {
+    --primary-color: #D93B4A; /* Um tom de vermelho/rosa sóbrio */
+    --background-color: #f8f9fa;
+    --card-background: #ffffff;
+    --text-color: #333;
+    --light-text-color: #6c757d;
+    --border-color: #dee2e6;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.card {
+    background-color: var(--card-background);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 15px 35px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    max-width: 700px;
+    padding: 30px 40px;
+    margin-bottom: 20px;
+}
+
+.card-header {
+    text-align: center;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+}
+
+.card-header h1, .card-header h2 {
+    margin: 0;
+    color: var(--primary-color);
+}
+
+.card-header p {
+    margin: 10px 0 0;
+    color: var(--light-text-color);
+    font-size: 0.95rem;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+.radio-group {
+    display: flex;
+    gap: 20px;
+}
+
+.radio-label {
+    display: flex;
+    align-items: center;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+input[type="radio"] {
+    margin-right: 8px;
+    accent-color: var(--primary-color);
+}
+
+.cta-button {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.cta-button:hover {
+    background-color: #b82e3b;
+}
+
+/* --- ESTILOS DO CERTIFICADO --- */
+
+#certificate-preview {
+    width: 100%;
+    /* A proporção de um certificado A4 paisagem (29.7 / 21) */
+    aspect-ratio: 29.7 / 21; 
+    background-image: url('modelo-certificado.jpg'); /* << COLOQUE SUA IMAGEM AQUI */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative; /* Essencial para posicionar o texto */
+    margin-bottom: 30px;
+    color: #000; /* Cor do texto no certificado */
+}
+
+#cert-name, #cert-role {
+    position: absolute; /* Permite posicionamento preciso */
+    width: 105%;
+    text-align: center;
+}
+
+/* !!! ATENÇÃO: Estes valores precisarão de ajuste fino !!! */
+#cert-name {
+    top: 38%; /* Distância do topo */
+    font-size: 0.8vw; /* Tamanho da fonte responsivo */
+    font-weight: 700;
+}
+
+#cert-role {
+    top: 60%; /* Distância do topo */
+    font-size: 1.5vw; /* Tamanho da fonte responsivo */
+    font-weight: 400;
+}
+
+
+.hidden {
+    display: none;
+}
