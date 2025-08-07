@@ -75,7 +75,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 email: email,
                 pdfData: base64Data,
                 fileName: `Certificado - ${name}.pdf`,
-                userName: name
+                userName: name,
+                role: selectedRole
             };
             fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(payload) });
         } catch (error) {
@@ -95,3 +96,4 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
