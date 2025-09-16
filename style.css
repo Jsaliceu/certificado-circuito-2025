@@ -106,7 +106,7 @@ input[type="radio"] {
 #certificate-preview {
     width: 100%;
     aspect-ratio: 29.7 / 21; 
-    background-image: url('modelo-certificado.jpg');
+    background-image: url('Certificado.jpg');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
