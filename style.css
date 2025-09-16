@@ -117,8 +117,8 @@ input[type="radio"] {
 
 #certificate-preview #cert-name {
     position: absolute;
-    top: 41%;
-    left: 50%;
+    top: 45%;
+    left: 54%;
     transform: translate(-50%, -50%);
     width: 80%;
     max-width: 800px;
@@ -185,3 +185,4 @@ input[type="radio"] {
 #render-modal #cert-role {
     font-size: 22px !important; /* Fonte grande para o PDF final */
 }
+
