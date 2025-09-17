@@ -106,7 +106,7 @@ input[type="radio"] {
 #certificate-preview {
     width: 100%;
     aspect-ratio: 29.7 / 21; 
-    background-image: url('Certificado.jpg');
+    background-image: url('Certificado1 (1).jpg');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -185,6 +185,7 @@ input[type="radio"] {
 #render-modal #cert-role {
     font-size: 22px !important; /* Fonte grande para o PDF final */
 }
+
 
 
 
