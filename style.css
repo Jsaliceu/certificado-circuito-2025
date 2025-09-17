@@ -136,7 +136,7 @@ input[type="radio"] {
     left: 23%;
     transform: translateX(-50%);
     font-family: 'Poppins', sans-serif;
-    font-size: 15px; /* Tamanho pequeno apenas para o preview na tela */
+    font-size: 12px; /* Tamanho pequeno apenas para o preview na tela */
     font-weight: 400;
     color: #333333;
     text-align: center;
@@ -185,6 +185,7 @@ input[type="radio"] {
 #render-modal #cert-role {
     font-size: 22px !important; /* Fonte grande para o PDF final */
 }
+
 
 
 
