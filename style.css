@@ -185,6 +185,22 @@ input[type="radio"] {
 #render-modal #cert-role {
     font-size: 22px !important; /* Fonte grande para o PDF final */
 }
+/* --- ESTILO PARA O RODAPÉ DOS CRÉDITOS --- */
+.card-footer {
+    position: relative; /* Necessário para o posicionamento do parágrafo */
+    margin-top: 20px; /* Adiciona um espaço acima do rodapé */
+    height: 20px;     /* Define uma altura para o container */
+}
+
+.card-footer p {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    margin: 0;
+    font-size: 0.75rem; /* Tamanho da fonte bem pequeno e discreto */
+    color: var(--light-text-color); /* Uma cor de texto suave */
+}
+
 
 
 
