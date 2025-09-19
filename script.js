@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const certRoleSpan = document.getElementById('cert-role');
     const downloadBtn = document.getElementById('download-btn');
 
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzedqQABer3dhB2Ae6ym0KXouIaYEGhf5wFzklSxpFH0jb-pudYTtWv6U2ra2-UPOms/exec'; // Mantenha sua URL aqui
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzTljaruSK3xC92GBGA9t87jmbQPnlseJZGxolwe-E33B8p7umg_KgaDsb0-U8B-HLmgQ/exec'; // Mantenha sua URL aqui
 
     // FUNÇÃO ROBUSTA PARA GERAR O PDF
     async function generatePdf(name, role) {
@@ -96,5 +96,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
 
 
