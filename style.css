@@ -123,7 +123,7 @@ input[type="radio"] {
     width: 80%;
     max-width: 800px;
     font-family: 'Poppins', sans-serif;
-    font-size: 16px;
+    font-size: 16px; /* Tamanho pequeno apenas para o preview na tela */
     font-weight: 700;
     color: #333333;
     line-height: 1.2;
@@ -136,31 +136,44 @@ input[type="radio"] {
     left: 25%;
     transform: translateX(-50%);
     font-family: 'Poppins', sans-serif;
-    font-size: 12px;
+    font-size: 12px; /* Tamanho pequeno apenas para o preview na tela */
     font-weight: 400;
     color: #333333;
     text-align: center;
     width: 100%;
 }
 
-/* --- ESTILO PARA O MODAL DE RENDERIZAÇÃO (INVISÍVEL) --- */
+/* --- ESTILO PARA O MODAL DE RENDERIZAÇÃO (AGORA INVISÍVEL) --- */
 #render-modal {
     position: fixed;
+    /* Joga o modal para muito longe da tela para garantir que seja invisível */
     top: -9999px;
     left: -9999px;
     z-index: 10000;
 }
 
+#render-modal p {
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
 #render-modal #certificate-preview {
-    width: 1123px;
+    width: 1123px; /* Largura fixa e grande para alta resolução */
     height: 794px;
     margin: 0;
 }
 
-#render-modal #cert-name { font-size: 60px !important; }
-#render-modal #cert-role { font-size: 40px !important; }
+/* --- FONTES GRANDES APENAS PARA O CERTIFICADO DENTRO DO MODAL DE RENDERIZAÇÃO --- */
+#render-modal #cert-name {
+    font-size: 26px !important; /* Fonte grande para o PDF final */
+}
 
-/* --- ESTILO PARA O RODAPÉ DOS CRÉDITOS --- */
+#render-modal #cert-role {
+    font-size: 22px !important; /* Fonte grande para o PDF final */
+}
+
+/* --- [ADICIONADO] ESTILO PARA O RODAPÉ DOS CRÉDITOS --- */
 .card-footer {
     position: relative;
     margin-top: 20px;
@@ -176,7 +189,7 @@ input[type="radio"] {
     color: var(--light-text-color);
 }
 
-/* --- [CORREÇÃO] CLASSE ESSENCIAL PARA ESCONDER ELEMENTOS --- */
+/* --- [ADICIONADO E CORRIGIDO] CLASSE ESSENCIAL PARA ESCONDER ELEMENTOS --- */
 .hidden {
     display: none;
 }
